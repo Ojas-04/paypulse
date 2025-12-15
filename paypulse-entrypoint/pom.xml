@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent -->
+    <parent>
+        <groupId>com.paypulse</groupId>
+        <artifactId>paypulse</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>paypulse-entrypoint</artifactId>
+
+    <dependencies>
+
+        <!-- Internal modules (versions managed by parent) -->
+        <dependency>
+            <groupId>com.paypulse</groupId>
+            <artifactId>paypulse-application</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paypulse</groupId>
+            <artifactId>paypulse-model</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

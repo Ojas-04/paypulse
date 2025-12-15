@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.paypulse</groupId>
+    <artifactId>paypulse</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>paypulse-adapters</artifactId>
+
+  
+  <dependencies>
+    <dependency>
+      <groupId>com.paypulse</groupId>
+      <artifactId>paypulse-ports</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.paypulse</groupId>
+      <artifactId>paypulse-domain</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
+</project>
