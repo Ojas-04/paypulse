@@ -13,3 +13,14 @@ target/
 
 # MacOS
 .DS_Store
+
+# Compiled Java files
+*.jar
+*.war
+*.ear
+
+# XML files (if you want to ignore ALL of them)
+*.xml
+
+# List and Log files
+*.lst

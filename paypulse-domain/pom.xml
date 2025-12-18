@@ -16,6 +16,14 @@
       <artifactId>paypulse-model</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.mapstruct</groupId>
+          <artifactId>mapstruct</artifactId>
+      </dependency>
   </dependencies>
 
 </project>

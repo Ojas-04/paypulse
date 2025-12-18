@@ -10,17 +10,47 @@
   <artifactId>paypulse-adapters</artifactId>
 
   
-  <dependencies>
-    <dependency>
-      <groupId>com.paypulse</groupId>
-      <artifactId>paypulse-ports</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.paypulse</groupId>
-      <artifactId>paypulse-domain</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
-    </dependency>
+      <dependencies>
+        <dependency>
+          <groupId>com.paypulse</groupId>
+          <artifactId>paypulse-ports</artifactId>
+          <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+        <dependency>
+          <groupId>com.paypulse</groupId>
+          <artifactId>paypulse-domain</artifactId>
+          <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+          <!-- Quarkus Core (CDI/Arc) -->
+        <dependency>
+              <groupId>io.quarkus</groupId>
+              <artifactId>quarkus-arc</artifactId>
+          </dependency>
+
+          <!-- JPA/Hibernate Panache if using persistence -->
+        <dependency>
+              <groupId>io.quarkus</groupId>
+              <artifactId>quarkus-hibernate-orm-panache</artifactId>
+          </dependency>
+
+          <!-- If using REST client or JSON mapping later -->
+        <dependency>
+              <groupId>io.quarkus</groupId>
+              <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
+          </dependency>
+
+          <!-- MapStruct API (mapper in adapters) -->
+        <dependency>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct</artifactId>
+          </dependency>
+
+          <!-- Lombok (if using) -->
+        <dependency>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <scope>provided</scope>
+          </dependency>
   </dependencies>
 
 </project>
