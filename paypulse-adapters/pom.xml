@@ -15,7 +15,7 @@
           <groupId>com.paypulse</groupId>
           <artifactId>paypulse-ports</artifactId>
           <version>1.0.0-SNAPSHOT</version>
-            </dependency>
+        </dependency>
         <dependency>
           <groupId>com.paypulse</groupId>
           <artifactId>paypulse-domain</artifactId>
@@ -25,32 +25,37 @@
         <dependency>
               <groupId>io.quarkus</groupId>
               <artifactId>quarkus-arc</artifactId>
-          </dependency>
+        </dependency>
 
           <!-- JPA/Hibernate Panache if using persistence -->
         <dependency>
               <groupId>io.quarkus</groupId>
               <artifactId>quarkus-hibernate-orm-panache</artifactId>
-          </dependency>
+        </dependency>
 
           <!-- If using REST client or JSON mapping later -->
         <dependency>
               <groupId>io.quarkus</groupId>
               <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
-          </dependency>
+        </dependency>
 
           <!-- MapStruct API (mapper in adapters) -->
         <dependency>
               <groupId>org.mapstruct</groupId>
               <artifactId>mapstruct</artifactId>
-          </dependency>
+        </dependency>
 
           <!-- Lombok (if using) -->
         <dependency>
               <groupId>org.projectlombok</groupId>
               <artifactId>lombok</artifactId>
               <scope>provided</scope>
-          </dependency>
-  </dependencies>
+        </dependency>
+
+        <dependency>
+              <groupId>io.quarkus</groupId>
+              <artifactId>quarkus-jdbc-postgresql</artifactId>
+        </dependency>
+      </dependencies>
 
 </project>
