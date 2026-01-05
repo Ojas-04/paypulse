@@ -44,7 +44,6 @@ public class MerchantRepositoryAdapter implements MerchantPersistencePort {
      */
     @Override
     public boolean existsByEmail(String email) {
-        return MerchantJpaEntity
-                .count("merchantEmail", email) > 0;
+        return MerchantJpaEntity.count("merchantEmail", email) > 0;
     }
 }

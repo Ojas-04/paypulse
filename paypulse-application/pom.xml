@@ -9,7 +9,6 @@
 
   <artifactId>paypulse-application</artifactId>
 
-  
   <dependencies>
     <dependency>
       <groupId>com.paypulse</groupId>
@@ -21,6 +20,33 @@
       <artifactId>paypulse-model</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
+    <dependency>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-arc</artifactId>
+    </dependency>
+
+      <dependency>
+      <groupId>com.paypulse</groupId>
+      <artifactId>paypulse-adapters</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jboss.jandex</groupId>
+        <artifactId>jandex-maven-plugin</artifactId>
+        <version>1.2.3</version>
+        <executions>
+          <execution>
+            <id>make-jandex</id>
+            <goals>
+              <goal>jandex</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

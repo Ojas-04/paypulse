@@ -29,4 +29,16 @@ public class MerchantJpaEntity extends PanacheEntityBase {
 
     @Column(name = "updated_at")
     public String updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        String now = java.time.Instant.now().toString();
+        this.createdAt = now;
+        this.updatedAt = now;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = java.time.Instant.now().toString();
+    }
 }

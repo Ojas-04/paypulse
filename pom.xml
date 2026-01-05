@@ -80,22 +80,6 @@
 
     <build>
         <plugins>
-            <!-- Quarkus Plugin -->
-            <plugin>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-maven-plugin</artifactId>
-                <version>${quarkus.platform.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>generate-code</goal>
-                            <goal>generate-code-tests</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- Annotation Processors -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
