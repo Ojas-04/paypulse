@@ -1,0 +1,42 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+# Maven - ignore target folders anywhere
+target/
+**/target/
+**/target/**
+
+# Compiled class files anywhere
+**/classes/
+*.class
+
+# Build outputs in any module
+**/build/
+**/out/
+
+# Domain, Port, or any module with target/classes
+**/domain/target/
+**/port/target/
+**/adapter/target/
+**/application/target/
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# IDE
+*.iml
+.idea/
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Logs
+*.log
+*.lst
+
+# XML files (be careful with pom.xml)
+**/target/**/*.xml
