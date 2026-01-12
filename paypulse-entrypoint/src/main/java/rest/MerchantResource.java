@@ -5,9 +5,11 @@ import com.paypulse.adapters.mapper.RegisterMerchantMapper;
 import com.paypulse.adapters.mapper.RegisterMerchantDomainMapper;
 import com.paypulse.model.dto.RegisterMerchantRequest;
 import com.paypulse.ports.in.merchant.RegisterMerchantUseCase;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
+@ApplicationScoped
 public class MerchantResource implements MerchantApi {
 
     @Inject
