@@ -6,6 +6,7 @@ import com.paypulse.domain.entity.Merchant;
 import com.paypulse.ports.out.merchant.MerchantPersistencePort;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ public class MerchantRepositoryAdapter implements MerchantPersistencePort {
      * @return
      */
     @Override
+    @Transactional
     public Merchant save(Merchant merchant) {
         MerchantJpaEntity entity = mapper.toEntity(merchant);
         entity.persist();
@@ -31,6 +33,7 @@ public class MerchantRepositoryAdapter implements MerchantPersistencePort {
      * @return
      */
     @Override
+    @Transactional
     public Optional<Merchant> findByMerchantId(String merchantId) {
         return MerchantJpaEntity
                 .find("merchantId", merchantId)
@@ -43,6 +46,7 @@ public class MerchantRepositoryAdapter implements MerchantPersistencePort {
      * @return
      */
     @Override
+    @Transactional
     public boolean existsByEmail(String email) {
         return MerchantJpaEntity.count("merchantEmail", email) > 0;
     }
