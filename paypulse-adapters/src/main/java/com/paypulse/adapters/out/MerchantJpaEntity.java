@@ -3,42 +3,36 @@ package com.paypulse.adapters.out;
 import com.paypulse.domain.enums.MerchantStatus;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "merchants")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MerchantJpaEntity extends PanacheEntityBase {
 
     @Id
     @Column(name = "merchant_id", nullable = false, updatable = false)
-    public String merchantId;
+    private String merchantId;
 
     @Column(name = "merchant_name", nullable = false)
-    public String merchantName;
+    private String merchantName;
 
     @Column(name = "merchant_email", nullable = false, unique = true)
-    public String merchantEmail;
+    private String merchantEmail;
 
     @Column(name = "merchant_phone")
-    public String merchantPhone;
+    private String merchantPhone;
 
     @Column(name = "status")
-    public MerchantStatus merchantStatus;
+    @Enumerated(EnumType.STRING)
+    private MerchantStatus merchantStatus;
 
     @Column(name = "created_at")
-    public String createdAt;
+    private String createdAt;
 
     @Column(name = "updated_at")
-    public String updatedAt;
-
-    @PrePersist
-    public void prePersist() {
-        String now = java.time.Instant.now().toString();
-        this.createdAt = now;
-        this.updatedAt = now;
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = java.time.Instant.now().toString();
-    }
+    private String updatedAt;
 }

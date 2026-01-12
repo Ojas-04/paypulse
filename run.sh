@@ -9,9 +9,9 @@ cd "$(dirname "$0")" || exit
 
 echo "=== PayPulse Project Runner ==="
 
-# Step 1: Build all modules
-echo ">>> Building all modules..."
-mvn clean install
+# Step 1: Build only the entrypoint module and its dependencies
+echo ">>> Building paypulse-entrypoint module..."
+mvn clean install -pl paypulse-entrypoint -am
 if [ $? -ne 0 ]; then
   echo "Build failed! Exiting."
   exit 1
