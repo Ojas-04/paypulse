@@ -26,27 +26,19 @@ public interface MerchantApi {
     @Operation(summary = "Register a new merchant", description = "Creates a new merchant in the system.")
     @RequestBody(description = "Merchant registration request", required = true)
     @APIResponse(
-        responseCode = "201",
+        responseCode = "200",
         description = "Merchant registered successfully",
-        content = @Content(
-            mediaType = MediaType.APPLICATION_JSON,
-            schema = @Schema(implementation = com.paypulse.model.dto.RegisterMerchantRequest.class),
-            examples = @ExampleObject(
-                name = "Success",
-                value = "{\"name\": \"John Doe\", \"email\": \"john@example.com\", \"phone\": \"1234567890\"}"
+            content = @Content(
+                    mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(implementation = RegisterMerchantRequest.class)
             )
-        )
     )
     @APIResponse(
         responseCode = "400",
         description = "Invalid request data",
         content = @Content(
             mediaType = MediaType.APPLICATION_JSON,
-            schema = @Schema(implementation = ErrorResponse.class),
-            examples = @ExampleObject(
-                name = "BadRequest",
-                value = "{\"error\": \"Invalid merchant data\"}"
-            )
+            schema = @Schema(implementation = ErrorResponse.class)
         )
     )
     @APIResponse(
@@ -54,11 +46,7 @@ public interface MerchantApi {
         description = "Merchant already exists",
         content = @Content(
             mediaType = MediaType.APPLICATION_JSON,
-            schema = @Schema(implementation = ErrorResponse.class),
-            examples = @ExampleObject(
-                name = "Conflict",
-                value = "{\"error\": \"Merchant already exists\"}"
-            )
+            schema = @Schema(implementation = ErrorResponse.class)
         )
     )
     @APIResponse(
@@ -66,11 +54,7 @@ public interface MerchantApi {
         description = "Internal server error",
         content = @Content(
             mediaType = MediaType.APPLICATION_JSON,
-            schema = @Schema(implementation = ErrorResponse.class),
-            examples = @ExampleObject(
-                name = "ServerError",
-                value = "{\"error\": \"Unexpected error occurred\"}"
-            )
+            schema = @Schema(implementation = ErrorResponse.class)
         )
     )
     Response registerMerchant(RegisterMerchantRequest registerMerchantRequest);
