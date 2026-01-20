@@ -14,12 +14,9 @@ import static java.util.UUID.randomUUID;
 @ApplicationScoped
 public class RegisterMerchantService implements RegisterMerchantUseCase {
 
-    private final MerchantPersistencePort merchantPersistencePort;
-
     @Inject
-    public RegisterMerchantService(MerchantPersistencePort merchantPersistencePort){
-        this.merchantPersistencePort = merchantPersistencePort;
-    }
+    MerchantPersistencePort merchantPersistencePort;
+
 
     @Override
     public Merchant registerMerchant(Merchant merchant) {
@@ -28,7 +25,6 @@ public class RegisterMerchantService implements RegisterMerchantUseCase {
         }
         merchant.setMerchantId(randomUUID().toString());
         merchant.setCreatedAt(now().toString());
-//        merchant.setUpdatedAt(now().toString());
         merchant.setMerchantStatus(ACTIVE);
         return merchantPersistencePort.save(merchant);
     }
