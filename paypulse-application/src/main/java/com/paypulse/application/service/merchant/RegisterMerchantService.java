@@ -8,6 +8,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import static com.paypulse.domain.enums.MerchantStatus.ACTIVE;
+import static java.time.LocalTime.now;
+import static java.util.UUID.randomUUID;
 
 @ApplicationScoped
 public class RegisterMerchantService implements RegisterMerchantUseCase {
@@ -22,12 +24,11 @@ public class RegisterMerchantService implements RegisterMerchantUseCase {
     @Override
     public Merchant registerMerchant(Merchant merchant) {
         if (merchantPersistencePort.existsByEmail(merchant.getMerchantEmail())) {
-            throw new IllegalStateException("Merchant already exists with", new IllegalStateException() ,merchant.getMerchantEmail());
+            throw new IllegalStateException("Merchant already exists with", merchant.getMerchantEmail(), "403");
         }
-        merchant.setMerchantId(java.util.UUID.randomUUID().toString());
-        String now = java.time.Instant.now().toString();
-        merchant.setCreatedAt(now);
-        merchant.setUpdatedAt(now);
+        merchant.setMerchantId(randomUUID().toString());
+        merchant.setCreatedAt(now().toString());
+//        merchant.setUpdatedAt(now().toString());
         merchant.setMerchantStatus(ACTIVE);
         return merchantPersistencePort.save(merchant);
     }
