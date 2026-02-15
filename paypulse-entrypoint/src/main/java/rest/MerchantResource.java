@@ -22,7 +22,10 @@ public class MerchantResource implements MerchantApi {
     RegisterMerchantDomainMapper registerMerchantDomainMapper;
 
     /**
-     * @return
+     * Accepts a request to register new merchant,
+     * maps the request to a domain command,
+     * invokes the use case to register the merchant,
+     * and returns an appropriate HTTP response.
      */
     @Override
     public Response registerMerchant(RegisterMerchantRequest registerMerchantRequest) {

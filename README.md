@@ -84,3 +84,27 @@ The project is currently a skeleton structure with modules in place.
 Flyway or Liquibase can be added for database migrations.
 
 Kafka adapters and JPA repositories are prepared in the adapters module.
+
+---
+
+## Current Features
+
+### Register a Merchant
+You can register a merchant using the REST API provided by the `paypulse-entrypoint` module.
+
+**Endpoint:**
+```
+POST /api/merchant/register
+```
+**Request Body Example:**
+```json
+{
+  "name": "Merchant Name",
+  "email": "merchant@example.com",
+  "address": "123 Main St"
+}
+```
+**Response:**
+Returns the registered merchant details and a unique merchant ID.
+
+More features will be added as development progresses.
