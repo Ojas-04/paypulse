@@ -10,12 +10,12 @@ The project is organized into 6 modules:
 
 | Module | Purpose |
 |--------|---------|
-| **paypulse-entrypoint** | REST APIs, request mappers, and application entry points |
-| **paypulse-model** | Commands, DTOs, events, and error responses |
-| **paypulse-domain** | Core entities, enums, constants, and exceptions |
-| **paypulse-ports** | Interfaces for use cases (inbound) and repositories (outbound) |
-| **paypulse-application** | Service implementations containing business logic |
-| **paypulse-adapters** | JPA entities, repositories, Kafka adapters, and mappers |
+| **merchant-entrypoint** | REST APIs, request mappers, and application entry points |
+| **merchant-model** | Commands, DTOs, events, and error responses |
+| **merchant-domain** | Core entities, enums, constants, and exceptions |
+| **merchant-ports** | Interfaces for use cases (inbound) and repositories (outbound) |
+| **merchant-application** | Service implementations containing business logic |
+| **merchant-adapters** | JPA entities, repositories, Kafka adapters, and mappers |
 
 ---
 
@@ -62,7 +62,7 @@ The main configuration file is located at:
 
 ```bash
 
-paypulse-entrypoint/src/resources/application.yml
+merchant-entrypoint/src/resources/application.yml
 You can configure:
 
 Server port
@@ -90,7 +90,7 @@ Kafka adapters and JPA repositories are prepared in the adapters module.
 ## Current Features
 
 ### Register a Merchant
-You can register a merchant using the REST API provided by the `paypulse-entrypoint` module.
+You can register a merchant using the REST API provided by the `merchant-entrypoint` module.
 
 **Endpoint:**
 ```

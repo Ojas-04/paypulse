@@ -11,12 +11,12 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>paypulse-entrypoint</module>
-        <module>paypulse-model</module>
-        <module>paypulse-domain</module>
-        <module>paypulse-ports</module>
-        <module>paypulse-application</module>
-        <module>paypulse-adapters</module>
+        <module>merchant-entrypoint</module>
+        <module>merchant-model</module>
+        <module>merchant-domain</module>
+        <module>merchant-ports</module>
+        <module>merchant-application</module>
+        <module>merchant-adapters</module>
     </modules>
 
     <properties>
@@ -42,27 +42,27 @@
             <!-- Internal modules version alignment -->
             <dependency>
                 <groupId>com.paypulse</groupId>
-                <artifactId>paypulse-model</artifactId>
+                <artifactId>merchant-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.paypulse</groupId>
-                <artifactId>paypulse-domain</artifactId>
+                <artifactId>merchant-domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.paypulse</groupId>
-                <artifactId>paypulse-ports</artifactId>
+                <artifactId>merchant-ports</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.paypulse</groupId>
-                <artifactId>paypulse-application</artifactId>
+                <artifactId>merchant-application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.paypulse</groupId>
-                <artifactId>paypulse-adapters</artifactId>
+                <artifactId>merchant-adapters</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

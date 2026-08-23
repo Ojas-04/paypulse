@@ -1,0 +1,53 @@
+package com.paypulse.merchant.adapters;
+
+import com.paypulse.merchant.adapters.mapper.MerchantPersistenceMapper;
+import com.paypulse.merchant.adapters.out.MerchantJpaEntity;
+import com.paypulse.merchant.domain.entity.Merchant;
+import com.paypulse.merchant.ports.out.merchant.MerchantPersistencePort;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+
+import java.util.Optional;
+
+@ApplicationScoped
+public class MerchantRepositoryAdapter implements MerchantPersistencePort {
+
+    @Inject
+    MerchantPersistenceMapper mapper;
+
+    /**
+     * @param merchant
+     * @return
+     */
+    @Override
+    @Transactional
+    public Merchant save(Merchant merchant) {
+        MerchantJpaEntity entity = mapper.toEntity(merchant);
+        entity.persist();
+        return mapper.toDomain(entity);
+    }
+
+    /**
+     * @param merchantId
+     * @return
+     */
+    @Override
+    @Transactional
+    public Optional<Merchant> findByMerchantId(String merchantId) {
+        return MerchantJpaEntity
+                .find("merchantId", merchantId)
+                .firstResultOptional()
+                .map(entity ->mapper.toDomain((MerchantJpaEntity) entity));
+    }
+
+    /**
+     * @param email
+     * @return
+     */
+    @Override
+    @Transactional
+    public boolean existsByEmail(String email) {
+        return MerchantJpaEntity.count("merchantEmail", email) > 0;
+    }
+}
