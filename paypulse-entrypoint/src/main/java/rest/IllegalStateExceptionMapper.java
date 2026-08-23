@@ -11,7 +11,7 @@ public class IllegalStateExceptionMapper implements ExceptionMapper<IllegalState
     @Override
     public Response toResponse(IllegalStateException ex) {
         ErrorResponse error = new ErrorResponse();
-        error.errorCode = "409";
+        error.errorCode = ex.getErrorCode() != null ? ex.getErrorCode() : "409";
         error.message = ex.getMessage() != null ? ex.getMessage() : "Merchant already exists";
         return Response.status(Response.Status.CONFLICT)
                 .entity(error)

@@ -13,6 +13,7 @@ public class MerchantPersistenceMapper {
         entity.setMerchantId(merchant.getMerchantId());
         entity.setMerchantName(merchant.getMerchantName());
         entity.setMerchantEmail(merchant.getMerchantEmail());
+        entity.setMerchantPhone(merchant.getMerchantPhone());
         entity.setMerchantStatus(MerchantStatus.valueOf(merchant.getMerchantStatus().name()));
         entity.setCreatedAt(merchant.getCreatedAt());
         entity.setUpdatedAt(merchant.getUpdatedAt());
@@ -24,6 +25,7 @@ public class MerchantPersistenceMapper {
         merchant.setMerchantId(merchantJpaEntity.getMerchantId());
         merchant.setMerchantName(merchantJpaEntity.getMerchantName());
         merchant.setMerchantEmail(merchantJpaEntity.getMerchantEmail());
+        merchant.setMerchantPhone(merchantJpaEntity.getMerchantPhone());
         merchant.setMerchantStatus(com.paypulse.domain.enums.MerchantStatus.valueOf(merchantJpaEntity.getMerchantStatus().name()));
         merchant.setCreatedAt(merchantJpaEntity.getCreatedAt());
         merchant.setUpdatedAt(merchantJpaEntity.getUpdatedAt());

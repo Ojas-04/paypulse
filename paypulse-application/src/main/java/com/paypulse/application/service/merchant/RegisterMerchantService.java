@@ -21,7 +21,7 @@ public class RegisterMerchantService implements RegisterMerchantUseCase {
     @Override
     public Merchant registerMerchant(Merchant merchant) {
         if (merchantPersistencePort.existsByEmail(merchant.getMerchantEmail())) {
-            throw new IllegalStateException("Merchant already exists with", merchant.getMerchantEmail(), "403");
+            throw new IllegalStateException("Merchant already exists with", merchant.getMerchantEmail(), "409");
         }
         merchant.setMerchantId(randomUUID().toString());
         merchant.setCreatedAt(now().toString());
