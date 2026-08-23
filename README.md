@@ -1,6 +1,6 @@
-# Paypulse
+# merchant-service
 
-Paypulse is a modular Java project built with **Quarkus** following **Hexagonal Architecture** principles. The project handles payment and merchant management and provides REST APIs for external interaction.
+merchant-service is a modular Java service built with **Quarkus** following **Hexagonal Architecture** principles. It is the merchant identity component of the **PayPulse** system: it registers merchants, looks them up by name or alias, and publishes registration events.
 
 ---
 
@@ -26,9 +26,9 @@ The project is organized into 6 modules:
 - **Maven**
 - **MapStruct** (object mapping)
 - **Lombok** (boilerplate reduction)
-- **PostgreSQL** (database)
-- **Testcontainers** (for integration tests)
-- **REST Assured / JUnit 5 + Mockito** (testing)
+- **PostgreSQL** (database, H2 in-memory for tests)
+- **Liquibase** (schema migrations)
+- **Quarkus Cucumber / REST Assured / JUnit 5 + Mockito** (testing)
 
 ---
 
@@ -38,8 +38,8 @@ The project is organized into 6 modules:
 
 ```bash
 
-git clone https://github.com/Ojas-04/paypulse.git
-cd paypulse
+git clone https://github.com/Ojas-04/merchant-service.git
+cd merchant-service
 ```
 
 ### 2. Build the project
@@ -62,7 +62,7 @@ The main configuration file is located at:
 
 ```bash
 
-merchant-entrypoint/src/resources/application.yml
+merchant-entrypoint/src/main/resources/application.properties
 You can configure:
 
 Server port
@@ -70,6 +70,8 @@ Server port
 Logging level
 
 Database connections (PostgreSQL)
+
+Liquibase migrations
 
 Other Quarkus-specific settings
 
@@ -79,11 +81,11 @@ Only commit source code, pom.xml, and run.sh
 target/ directories, IDE files (.idea/), and OS files (.DS_Store) are ignored via .gitignore.
 ```
 Notes
-The project is currently a skeleton structure with modules in place.
+Merchant registration is working end-to-end (REST API, domain, persistence).
 
-Flyway or Liquibase can be added for database migrations.
+Lookup by name/alias, aliases, and event publishing are planned next.
 
-Kafka adapters and JPA repositories are prepared in the adapters module.
+Liquibase changelogs live in `merchant-adapters/src/main/resources/db.changelog/`.
 
 ---
 
@@ -94,14 +96,14 @@ You can register a merchant using the REST API provided by the `merchant-entrypo
 
 **Endpoint:**
 ```
-POST /api/merchant/register
+POST /merchants/register
 ```
 **Request Body Example:**
 ```json
 {
   "name": "Merchant Name",
   "email": "merchant@example.com",
-  "address": "123 Main St"
+  "phone": "1234567890"
 }
 ```
 **Response:**
