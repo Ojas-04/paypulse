@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.paypulse</groupId>
     <artifactId>paypulse</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>merchant-application</artifactId>
@@ -13,12 +13,12 @@
     <dependency>
       <groupId>com.paypulse</groupId>
       <artifactId>merchant-ports</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>com.paypulse</groupId>
       <artifactId>merchant-model</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
           <groupId>io.quarkus</groupId>
@@ -28,7 +28,7 @@
       <dependency>
       <groupId>com.paypulse</groupId>
       <artifactId>merchant-adapters</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 

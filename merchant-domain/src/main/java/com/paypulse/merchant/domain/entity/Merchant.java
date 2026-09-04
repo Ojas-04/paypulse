@@ -1,18 +1,26 @@
 package com.paypulse.merchant.domain.entity;
 
+import java.time.Instant;
+import java.util.UUID;
+
 import com.paypulse.merchant.domain.enums.MerchantStatus;
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Merchant {
 
-    private String merchantId;
+    private UUID merchantId;
     private String merchantName;
     private String merchantEmail;
     private String merchantPhone;
-    private String createdAt;
-    private String updatedAt;
+    private Instant createdAt;
+    private Instant updatedAt;
     private MerchantStatus merchantStatus;
 }

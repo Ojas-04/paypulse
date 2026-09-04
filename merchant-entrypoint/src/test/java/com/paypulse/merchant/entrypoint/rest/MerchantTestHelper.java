@@ -5,6 +5,7 @@ import java.util.UUID;
 final class MerchantTestHelper {
 
     static final String REGISTER_MERCHANT_PATH = "/merchants/register";
+    static final String RESOLVE_MERCHANT_PATH = "/merchants/resolve";
 
     private static final String DEFAULT_NAME = "Acme Store";
     private static final String DEFAULT_PHONE = "1234567890";

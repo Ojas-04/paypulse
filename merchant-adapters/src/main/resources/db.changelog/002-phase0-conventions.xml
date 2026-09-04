@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- §3: native UUID identity for merchants -->
+    <changeSet id="002-merchant-id-to-uuid" author="paypulse" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="merchants" columnName="merchant_id"/>
+        </preConditions>
+        <sql>ALTER TABLE merchants ALTER COLUMN merchant_id TYPE uuid USING merchant_id::uuid;</sql>
+    </changeSet>
+
+    <!-- §7: auto-created merchants may omit optional fields -->
+    <changeSet id="002-email-nullable" author="paypulse">
+        <dropNotNullConstraint tableName="merchants" columnName="merchant_email" columnDataType="VARCHAR(255)"/>
+    </changeSet>
+
+    <!-- §6: idempotency anchor — unique constraint on merchant_name -->
+    <changeSet id="002-merchant-name-unique" author="paypulse">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">SELECT COUNT(*) FROM (
+                SELECT merchant_name FROM merchants GROUP BY merchant_name HAVING COUNT(*) &gt; 1
+            ) duplicates;</sqlCheck>
+        </preConditions>
+        <addUniqueConstraint tableName="merchants" columnNames="merchant_name"
+                             constraintName="uq_merchants_merchant_name"/>
+    </changeSet>
+
+    <!-- §5: outbox table (correlation_id kept denormalized for relay logging/ops) -->
+    <changeSet id="002-outbox-table" author="paypulse">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="outbox"/>
+            </not>
+        </preConditions>
+        <createTable tableName="outbox">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="event_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="correlation_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payload" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="published_at" type="TIMESTAMP WITH TIME ZONE"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Relay polling index; partial index is PostgreSQL-specific -->
+    <changeSet id="002-outbox-unpublished-index" author="paypulse" dbms="postgresql">
+        <sql>CREATE INDEX idx_outbox_unpublished ON outbox (created_at) WHERE published_at IS NULL;</sql>
+    </changeSet>
+</databaseChangeLog>

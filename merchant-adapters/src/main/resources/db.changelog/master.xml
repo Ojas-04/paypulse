@@ -6,8 +6,10 @@
 
     <!-- Master changelog: include individual changeset files here in order -->
     <include file="001-init-schema.xml" relativeToChangelogFile="true"/>
+    <include file="002-phase0-conventions.xml" relativeToChangelogFile="true"/>
+    <include file="003-normalize-merchant-timestamps.xml" relativeToChangelogFile="true"/>
 
     <!-- Add future includes here, e.g.:
-    <include file="002-add-merchant-table.xml" relativeToChangelogFile="true"/>
+    <include file="003-add-merchant-alias.xml" relativeToChangelogFile="true"/>
     -->
 </databaseChangeLog>

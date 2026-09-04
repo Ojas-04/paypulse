@@ -1,14 +1,17 @@
 package com.paypulse.merchant.ports.out.merchant;
 
-import com.paypulse.merchant.domain.entity.Merchant;
-
 import java.util.Optional;
+import java.util.UUID;
+
+import com.paypulse.merchant.domain.entity.Merchant;
 
 public interface MerchantPersistencePort {
 
-    Merchant save(Merchant merchant);
+    void save(Merchant merchant);
 
-    Optional<Merchant> findByMerchantId(String merchantId);
+    Optional<Merchant> findByMerchantId(UUID merchantId);
 
-    boolean existsByEmail(String email);
+    Optional<Merchant> findByMerchantName(String merchantName);
+
+    Optional<Merchant> findByNameCaseInsensitive(String merchantName);
 }

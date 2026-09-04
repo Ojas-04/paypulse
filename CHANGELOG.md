@@ -1,4 +1,6 @@
+
 ### Added
+- Added merchant create API to allow merchants to be registered.
 
 --------------------------------------
 ### Release 1.0.0 - 2026-02-15
