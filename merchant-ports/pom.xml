@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.paypulse</groupId>
     <artifactId>paypulse</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
   </parent>
 
   <artifactId>merchant-ports</artifactId>
@@ -14,7 +14,7 @@
     <dependency>
       <groupId>com.paypulse</groupId>
       <artifactId>merchant-domain</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.1-SNAPSHOT</version>
     </dependency>
   </dependencies>
 

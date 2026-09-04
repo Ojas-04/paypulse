@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- §3: legacy created_at/updated_at were stored as VARCHAR by an older, pre-Liquibase
+         schema. Normalize them to timestamp with time zone so they match the JPA entity
+         (Instant). Rows holding bare time-of-day ("HH:mm:ss") or empty values are legacy
+         test data — default them to now(). -->
+    <changeSet id="003-normalize-merchant-timestamps" author="paypulse" dbms="postgresql">
+        <preConditions onFail="MARK_RAN">
+            <columnExists tableName="merchants" columnName="created_at"/>
+        </preConditions>
+        <sql>
+            -- Bare time-of-day (no leading date) or empty created_at → now()
+            UPDATE merchants
+            SET created_at = COALESCE(NULLIF(updated_at, ''), to_char(now(), 'YYYY-MM-DD"T"HH24:MI:SS.MS'))
+            WHERE created_at IS NULL OR created_at = '' OR created_at !~ '^\d{4}-\d{2}-\d{2}T';
+
+            -- Bare time-of-day or empty updated_at → mirror created_at
+            UPDATE merchants
+            SET updated_at = created_at
+            WHERE updated_at IS NULL OR updated_at = '' OR updated_at !~ '^\d{4}-\d{2}-\d{2}T';
+        </sql>
+        <sql>
+            ALTER TABLE merchants
+                ALTER COLUMN created_at TYPE timestamp with time zone USING created_at::timestamptz,
+                ALTER COLUMN updated_at TYPE timestamp with time zone USING updated_at::timestamptz;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
