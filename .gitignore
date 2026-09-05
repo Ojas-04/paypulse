@@ -13,7 +13,7 @@ target/
 
 # Build outputs in any module
 **/build/
-**/out/
+
 
 # Domain, Port, or any module with target/classes
 **/domain/target/
